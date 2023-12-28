@@ -8,7 +8,7 @@ exports.authSignUp = async (req, res) => {
     //find = searching if the member exist , if not it will create a new one
     const find = await SignUp.findOne({ email: email });
     if (find) {
-      res.status(400).send({ msg: "member already exist" });
+     return  res.status(400).send({ msg: `member ${name} already exist` });
     }
 
     const member = new SignUp(req.body);
@@ -19,9 +19,9 @@ exports.authSignUp = async (req, res) => {
     const token = jwt.sign(memberID, process.env.SECRET_OR_KEY);
     member.password = passwordHashed;
     await member.save();
-    res.status(200).send({ msg: "member added successfully", token });
+    return res.status(200).send({ msg: `member ${name} added successfully`, token });
   } catch (error) {
-    res.status(400).send({ msg: "error", error });
+    return res.status(400).send({ msg: "error", error });
   }
 };
 

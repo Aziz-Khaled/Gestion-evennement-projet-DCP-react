@@ -1,27 +1,37 @@
-import React from 'react'
+import React , {useState} from 'react'
 import './SignUp.css'
+import { useDispatch } from 'react-redux'
+import {signUp} from '../../../Redux/actions/actions'
+
 function SignUp() {
+const dispatch = useDispatch() ;
+
+const [name , setName] = useState('') 
+const [email, setEmail] = useState('') 
+const [password , setPassword] = useState('') 
+
+const signUpFunction = () => {
+  dispatch (signUp({
+    name , email  , password
+  }))
+  
+}
   return (
     <div>
       <div className="form">
   <div className="subtitle">Let's create your account!</div>
+
+
   <div className="input-container ic1">
-    <input id="firstname" className="input" type="text" placeholder=" " />
+    <input id="firstname" className="input" type="text" onChange={(e)=> setName (e.target.value)} />
     <div className="cut" />
     <label htmlFor="firstname" className="placeholder">
       First name
     </label>
   </div>
-  <div className="input-container ic2">
-    <input id="lastname" className="input" type="text" placeholder=" " />
-    <div className="cut" />
-    <label htmlFor="lastname" className="placeholder">
-      Last name
-    </label>
-  </div>
   
   <div className="input-container ic2">
-    <input id="email" className="input" type="text" placeholder=" " />
+    <input id="email" className="input" type="text" onChange={(e)=> setEmail (e.target.value)} />
     <div className="cut cut-short" />
     <label htmlFor="email" className="placeholder">
       Email
@@ -29,13 +39,14 @@ function SignUp() {
   </div>
 
   <div className="input-container ic2">
-    <input id="password" className="input" type="password" placeholder=" " />
+    <input id="password" className="input" type="password" onChange={(e)=> setPassword (e.target.value)} />
     <div className="cut" />
     <label htmlFor="lastname" className="placeholder">
       Password
     </label>
+
   </div>
-  <button type="text" className="submit">
+  <button onClick={signUpFunction} type="text" className="submit">
     submit
   </button>
 </div>

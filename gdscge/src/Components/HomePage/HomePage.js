@@ -2,7 +2,11 @@ import React from 'react'
 
 function HomePage() {
   return (
-    <div>HomePage Work</div>
+    <div>
+      <div style ={{color : "white"}}>
+      HomePage Work
+      </div>
+      </div>
   )
 }
 
