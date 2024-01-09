@@ -4,7 +4,7 @@ function HomePage() {
   return (
     <div>
       <div style ={{color : "white"}}>
-      HomePage Work
+      wiouuu khedmett
       </div>
       </div>
   )

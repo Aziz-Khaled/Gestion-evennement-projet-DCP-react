@@ -37,7 +37,7 @@ exports.authLogIn = async (req, res) => {
 
     const comparePass = await bcrypt.compare(password, find.password);
     if (!comparePass) {
-      res.status(40).send({ msg: "bad credentials" });
+      res.status(400).send({ msg: "bad credentials" });
     }
     const memberID = { id: find._id };
     const token = jwt.sign(memberID, process.env.SECRET_OR_KEY);

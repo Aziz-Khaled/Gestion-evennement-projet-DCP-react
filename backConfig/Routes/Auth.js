@@ -9,10 +9,14 @@ const { isAuth } = require("../middleware/isAuth");
 
 
 auth.post("/signUp", authSignUp );
+
 auth.post ('/logIn' ,authLogIn) ;
+
 auth.get ('/currentMembers' , isAuth ,  (req , res) => {
   res.send (req.member)
 })
+
+
 
 
 module.exports = auth;
