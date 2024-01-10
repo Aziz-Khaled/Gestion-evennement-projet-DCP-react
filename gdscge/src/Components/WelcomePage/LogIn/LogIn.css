@@ -1,5 +1,4 @@
 .container {
-border: 1px solid black;
 display: flex;
 align-items: center;
 flex-direction: column;
@@ -10,13 +9,15 @@ flex-wrap: wrap;
     width: 20%;
 }
 
-body {
+.LogInContainer {
     align-items: center;
     background-color: #000;
     display: flex;
     justify-content: center;
     height: 100vh;
 }
+
+
 .form {
     background-color: #15172b;
     border-radius: 20px;

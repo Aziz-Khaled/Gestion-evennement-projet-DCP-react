@@ -2,7 +2,7 @@
     width: 20%;
 }
 
-body {
+.SignInContainer {
     align-items: center;
     background-color: #000;
     display: flex;

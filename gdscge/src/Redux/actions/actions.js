@@ -1,10 +1,9 @@
-import {SIGNUP , LOGIN , GETMEMBERS } from '../actionType/action-type'
+import {SIGNUP , LOGIN , GETMEMBERS  , DISPLAYINGEVENTS ,  ADDEVENT} from '../actionType/action-type'
 import axios from 'axios'
 
 
 export const signUp = (data) => async (dispatch) => {
-
-            console.log(data)
+    console.log(data)
     try {
         const signUp = await axios.post ("http://localhost:5000/signUp" , data) ;
         dispatch ({
@@ -20,16 +19,17 @@ localStorage.setItem('token', signUp.data.token)
 }
 
 
+
 export const LogInMember = (data) => async (dispatch) => {
+    axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*' 
     console.log(data)
     try {
         const login = await axios.post ("http://localhost:5000/logIn" , data) ;
         dispatch ({
             type: LOGIN , 
-            payload: login, 
-            
+            payload: login,
         })
-
+        dispatch(CurrentMember(login.data.token))
 localStorage.setItem('token', login.data.token)
     } catch (error) {
         console.log( "msg d'erreur : " , error)
@@ -48,7 +48,6 @@ localStorage.setItem('token', login.data.token)
                     type : GETMEMBERS ,
                     payload : getMember.data
                 }
-                
             )
             localStorage.setItem('current_user',JSON.stringify(getMember.data))
         } catch (error) {
@@ -56,3 +55,37 @@ localStorage.setItem('token', login.data.token)
         }
     }
     
+
+export const displayingEvents = () => async (dispatch) => {
+   try {
+    
+    const displayEvent = await axios.get('http://localhost:5000/displayevents')
+    dispatch ({ 
+        type : DISPLAYINGEVENTS , 
+        payload : displayEvent.data.allEvents
+    })
+
+
+   } catch (error) {
+    console.error(error)
+   } 
+}
+
+
+
+
+
+export const addNewEvent = (data) => async (dispatch) => {
+  
+    
+    try {
+        const newEvent = await axios.post ("http://localhost:5000/postEvent" , data) ;
+        dispatch ({
+            type: ADDEVENT , 
+            payload: newEvent.data,
+        })
+        
+    } catch (error) {
+        console.log( "msg d'erreur : " , error)
+    } }
+

@@ -1,0 +1,31 @@
+.homePageContainer {
+    border: 1px solid black;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: whitesmoke;
+}
+
+.paragraph {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Google Sans, Open Sans";
+}
+
+.gdsc {
+    padding-right: 10px;
+}
+
+.events {
+    border: 1px solid black;
+    margin-top: 50px;
+}
+
+.eventCards{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;}

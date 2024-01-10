@@ -1,10 +1,7 @@
 const express = require("express");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 const auth = express.Router();
-const SignUp = require("../Models/SignUp");
 require ('dotenv').config()
-const {authSignUp , authLogIn} = require ("../Controllers/Contact.controller");
+const {authSignUp , authLogIn , postEvent , displayingEvents , deleteEvent} = require ("../Controllers/Contact.controller");
 const { isAuth } = require("../middleware/isAuth");
 
 
@@ -12,11 +9,10 @@ auth.post("/signUp", authSignUp );
 
 auth.post ('/logIn' ,authLogIn) ;
 
-auth.get ('/currentMembers' , isAuth ,  (req , res) => {
-  res.send (req.member)
-})
+auth.get ('/currentMembers' , isAuth ,  (req , res) => {res.send (req.member)})
 
+auth.post ('/postEvent' , postEvent ) ;
 
-
-
+auth.get ('/displayevents' ,displayingEvents)
+auth.delete ("/delete/:id",deleteEvent)
 module.exports = auth;

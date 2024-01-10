@@ -1,14 +1,14 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const SignUp = require("../Models/SignUp");
+const Event = require ("../Models/event")
 
 exports.authSignUp = async (req, res) => {
   const { name, email, password, role } = req.body;
   try {
-    //find = searching if the member exist , if not it will create a new one
     const find = await SignUp.findOne({ email: email });
     if (find) {
-     return  res.status(400).send({ msg: `member ${name} already exist` });
+    return  res.status(400).send({ msg: `member ${name} already exist` });
     }
 
     const member = new SignUp(req.body);
@@ -46,3 +46,41 @@ exports.authLogIn = async (req, res) => {
     res.status(400).send({ msg: "bad credentials ..." });
   }
 };
+
+exports.postEvent = async (req , res) => {
+    try {
+    const addingNewEvent = new Event (req.body) 
+    await addingNewEvent.save()
+    return res.status (200).send({msg: "event added" , addingNewEvent})
+
+} catch (error) {
+  return res.status(400).send({msg: "failed to add", error});
+}
+}
+
+
+
+exports.displayingEvents = async (req , res) => {
+  try {
+    const allEvents = await Event.find() ; 
+    return res.status (200).send({msg: "events : " , allEvents})
+  } catch (error) {
+    return res.status (400).send({msg: "error : " , error})
+  }
+}
+
+
+
+
+exports.deleteEvent = async (req, res)  => {
+  const {id} = req.params
+  try {
+      const oneEvent =  await Trip.findByIdAndDelete(id);
+  
+      return res.status (200).send({msg: "tour deleted"})
+      
+  } catch (error) {
+      return res.status (400).send({msg: "failed to delete"}, error)
+      
+  }
+}

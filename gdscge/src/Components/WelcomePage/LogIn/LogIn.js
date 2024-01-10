@@ -33,12 +33,11 @@ const navigate = useNavigate ()
       } 
 }
   return (  
-    <div>
+    <div className ="LogInContainer">
       <div className="container">
         <div className="form">
         <img id="GdscLogo" src = {LOGO} alt ="test" />
   <div className="title">Welcome to GDSC Iset Nabeul Platform</div>
-  <div className="subtitle">Let's create your account!</div>
 
   <div className="input-container ic2">
     <input id="email" className="input" type="text" placeholder=" "  onChange={(e)=> setEmail (e.target.value)}/>

@@ -25,7 +25,7 @@ const signUpFunction = () => {
   }
 }
   return (
-    <div>
+    <div  className ="SignInContainer">
       <div className="form">
   <div className="subtitle">Let's create your account!</div>
 
